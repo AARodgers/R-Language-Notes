@@ -11,3 +11,9 @@
 #(was built in python, it makes interactive plots), you can wrap plotly around
 # ggplot2 to make the chart interactive
 # Ctrl enter is the same as run
+# remove(variable) to remove a variable
+# numbers can hold . digits
+# python is a 0 indexing language
+# R is a 1 indexing language
+# sometimes you have to call garbage
+# you don't need to put return in R, it will return the last line of code
