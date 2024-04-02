@@ -22,4 +22,21 @@ starwars %>%
   # put into a scatter plot
   plot()
 
-  
+
+#Exploring data
+#Data structure and types of variables
+
+#view the msleep data frame about animals sleeping
+View(msleep)
+# to see the variables(colums), data type, and data in rows
+glimpse(msleep)
+#to see summary of first 6 rows
+head(dataset)
+# to see the data type of variable
+class(dataframe$variable)
+# number of variables(columns) in the dataframe
+length(dataframe)
+# to see how many observations or rows of a certain variable
+length(dataframe$variable)
+#to get a list of all of the variables so you can copy and paste
+names(dataframe)
