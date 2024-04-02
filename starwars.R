@@ -40,3 +40,12 @@ length(dataframe)
 length(dataframe$variable)
 #to get a list of all of the variables so you can copy and paste
 names(dataframe)
+# to get a list of the unique observations or factors
+#in a certain column or variable
+#NA will mean missing data in a row
+unique(dataframe$variable)
+
+#create a variable to hold the rows with missing data
+missing <- !complete.cases(dataframe)
+#view all of the rows of missing data
+dataframe[missing, ]
