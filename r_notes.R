@@ -44,3 +44,31 @@ chars <- c("red", "green", "blue")
 # matrices = a two dimensional array of values of the same data type
 #create a 3.3 matrix
 mat <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol =3)
+#END
+
+#START: make small data frame and view the table and schema
+ages <- c(5, 6)
+names <- c("John", "James")
+friends <- data.frame(names, ages)
+View(friends)
+str(friends)
+#END
+
+#to checkout a variable
+data.set$variable
+friends$names
+
+# to get the value of the first row and first column
+#data.set[row, column]
+friends[1,1]
+# will give you all of the columns for row 1 ( a full record)
+friends[1, ]
+#will list whole first column or all rows in column one
+friends[ ,1]
+
+#to view built in datasets in r studio
+data()
+#to view the CO2 dataset
+view(CO2)
+
+
