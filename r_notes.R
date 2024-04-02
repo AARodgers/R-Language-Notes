@@ -39,3 +39,8 @@ write.xlsx(data, "file.xlsx", sheetName = "Sheet1", colNames = TRUE,
 nums <- c(1, 2, 3, 4)
 chars <- c("red", "green", "blue")
 #END
+
+#START
+# matrices = a two dimensional array of values of the same data type
+#create a 3.3 matrix
+mat <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol =3)
