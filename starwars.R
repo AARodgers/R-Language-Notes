@@ -49,3 +49,29 @@ unique(dataframe$variable)
 missing <- !complete.cases(dataframe)
 #view all of the rows of missing data
 dataframe[missing, ]
+
+#Selecting data and cleaning it
+#Select variables or columns that you want to work with
+starwars %>%
+  select(name, height, mass)
+
+#select columns 1, 2, and 3
+starwars %>%
+  select(1:3)
+
+#to select columns that end in a certain word or string
+starwars %>%
+  select(ends_with("color"))
+
+# Can select columns that end with 'color', can also do starts with and contains
+starwars %>%
+  select(ends_with("color"))
+
+# Change the variable or column order
+starwars %>%
+  select(name, mass, height, everything())
+
+#Change the variable name, change 'name' to 'character'
+starwars %>%
+  rename("characters" = "name") %>%
+  head()
