@@ -130,9 +130,16 @@ friends %>%
 
 # Manipulate data========
 
-#Create or change a variablstarware (mutate)
+#Create or change a variable (mutate)
 starwars %>%
   mutate(height_m = height/100) %>%
   select(name, height, height_m)
 
-  
+#Conditional change (if_else)
+starwars %>%
+  mutate(height_m = height/100) %>%
+  select(name, height, height_m) %>%
+  mutate(tallness =
+           if_else(height_m < 1,
+                   "short",
+                   "tall"))
