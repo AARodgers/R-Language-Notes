@@ -105,3 +105,34 @@ df <- df %>%
   mutate(sex = factor(sex, levels = c("male", "female", "hermaphroditic", "none"
          )))
 levels(df$sex)
+
+# Filter rows
+starwars %>%
+  # select or highlight the columns that you want
+  select(mass, sex) %>%
+  # filter out the rows you want by a condition to be met
+  filter(mass < 55 & sex == "male")
+
+# To change the names of row observations, ex. change male to man
+starwars %>%
+  select(sex) %>%
+  mutate(sex = recode(sex, "male" = "man", "female" = "woman"))
+
+# Dealing with missing data ( mean will return NA if there is missing data)
+mean(starwars$height, na.rm = TRUE)
+
+#Dealing with duplicates
+Names <- c("Peter", "John", "Andrew", "Peter")
+Age <- c(22, 33, 44, 22)
+friends <- data.frame(Names, Age)
+friends %>%
+  distinct()
+
+# Manipulate data========
+
+#Create or change a variablstarware (mutate)
+starwars %>%
+  mutate(height_m = height/100) %>%
+  select(name, height, height_m)
+
+  
