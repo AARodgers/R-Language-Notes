@@ -75,3 +75,33 @@ starwars %>%
 starwars %>%
   rename("characters" = "name") %>%
   head()
+
+#Change the variable type
+# To see what kind of variable hair_color is (it is a character variable)
+class(starwars$hair_color)
+# should give you result "character"
+# to assign it or let R know it is a categorical character or string
+starwars$hair_color <- as.factor(starwars$hair_color)
+class(starwars$hair_color)
+# should see result as "factor"
+
+# Another way to change the type is using function mutate, it means to change
+# or write over. Here change hair_color back to a character type from factor
+starwars %>%
+  mutate(hair_color = as.character(hair_color)) %>%
+  glimpse()
+
+#Changing factor levels, factor automatically are sorted in alphabetical order,
+#but sometimes you don't want them to do that like months of the year
+# Create a new dataframe and assign it to starwars
+df <- starwars
+# Make the sex variable a factor
+df$sex <- as.factor(df$sex)
+# Ask for the levels(df$sex), in other words, the type of sexes
+levels(df$sex)
+# these will automatically be in alphabetical order
+# if you want to change the default order, you need to mutate the factors
+df <- df %>%
+  mutate(sex = factor(sex, levels = c("male", "female", "hermaphroditic", "none"
+         )))
+levels(df$sex)
