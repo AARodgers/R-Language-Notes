@@ -285,14 +285,51 @@ starwars %>%
   theme_minimal()
   labs(title = "Height and mass by sex")
 
-# Smoothed model
-starwars %>%
-  filter(mass < 200) %>%
-  ggplot(aes(height, mass, color = sex)) +
-  geom_point(size = 3, alpha = 0.8)+
-  # adds a smooth linear model to plot
-  geom_smooth()+
-  # creates a different box for each of the sexes
-  facet_wrap(~sex) +
-  theme_bw()
-  labs(title = "Height and mass by sex")
+
+# P-value:
+# running a T test gets you the P-value
+# start with a null hypothesis, that there is no difference
+#btwn two sets of data, Ex. life expectancy in africa and
+# europe. If there was no difference, how likely would it be
+# you would get a sample with the difference that you got
+# when you plotted the two next to each other.
+library(gapminder)
+View(gapminder)
+t_test_plot
+
+gapminder %>%
+  filter(continent %in% c("Africa", "Europe")) %>%
+  t.test(lifeExp ~ continent, data = .,
+  # could be less than or more instead of two.sided
+  altrnative = "two.sided",
+  # if you were comparing africa to itself but in diff years
+  paired = FALSE)
+# returns data:  lifeExp by continent
+#t = -49.551, df = 981.2, p-value < 2.2e-16
+#p-value is small 2.2 to the negative 16th
+# anything under .05 or 5% is good p-value, you can reject
+# the null hypothesis that
+
+# ANOVA
+ANOVA_plot
+
+gapminder %>%
+  filter(year == 2007) %>%
+  filter(continent %in% c("Americas", "Europe", "Asia")) %>%
+  aov(lifeExp ~ continent, data = .) %>%
+  summary()
+#            Df Sum Sq Mean Sq F value   Pr(>F)
+#continent    2  755.6   377.8   11.63 3.42e-05 ***
+  #Residuals   85 2760.3    32.5
+# the Pr(>F) is p value, it is small the differences are
+# significant
+
+# TukeyHSD()
+gapminder %>%
+  filter(year == 2007) %>%
+  filter(continent %in% c("Americas", "Europe", "Asia")) %>%
+  aov(lifeExp ~ continent, data = .) %>%
+  TukeyHSD() %>%
+  plot()
+
+#
