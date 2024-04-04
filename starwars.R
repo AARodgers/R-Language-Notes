@@ -161,3 +161,57 @@ long_data <- wide_data %>%
     values_to = "lifeExp"
   )
 View(long_data)
+
+# Describing your data
+View(msleep)
+# Range / spread
+min(msleep$awake)
+max(msleep$awake)
+range(msleep$awake)
+# QR stands for Interquartile Range. It is a measure of statistical
+#dispersion that represents the range between the first
+#quartile (Q1) and the third quartile (Q3) of a dataset
+IQR(msleep$awake)
+
+#Centrality
+mean(msleep$awake)
+median(msleep$awake)
+
+# Variance is a measure of statistical dispersion that
+# quantifies the spread or variability of a dataset.
+# It measures how much the values in a dataset deviate
+# from the mean.
+var(msleep$awake)
+
+# To get a summary of the statistical descriptions
+summary(msleep$awake)
+# if you just want a summary for 2 variables
+msleep %>%
+  select(awake, sleep_total) %>%
+  summary()
+
+# Summarize your data
+msleep %>%
+  # drop missing values from vore
+  drop_na(vore) %>%
+  # group all of the vore types
+  group_by(vore) %>%
+  # Create new variable or column headings
+  summarise(Lower = min(sleep_total),
+            Average = mean(sleep_total),
+            Upper = max(sleep_total),
+            Difference =
+            max(sleep_total)-min(sleep_total)) %>%
+  arrange(Average) %>%
+  View()
+
+# Create tables
+# will count the number of observation types in a column
+table(msleep$vore)
+# to see how many of the vores are Rodents and h.m. Primates
+msleep %>%
+  # select the vore and order columns
+  select(vore, order) %>%
+  # filter the order column by Rodentia and Primates
+  filter(order, %in% c("Rodentia", "Primates")) %>%
+  table()
