@@ -366,3 +366,21 @@ flowers %>%
 flowers %>%
   table() #%>%
   chisq.test()
+
+#Linear Model
+# x speed of car is independant, y = distance to stop is
+# dependant on x = speed of car
+# null hypothesis is that there is no relationship btwn
+#speed of car and distance to stop, if it was true, how likely
+#is it that you would get a sample with a slope of X
+#R2, r squared is how much of the change of dots off of the slope
+# can be explained by the x and y relationship, other words
+# how much can the change in y be explained by the change in x
+# if R2 = .65 it equals 65%, so 65% of the change in distance
+# can be explained by the change in x or speed of x
+
+cars %>%
+  # distance as a function of speed, dependant variable ~ independant variable
+  lm(dist ~ speed, data = .) %>%
+  summary()
+  plot(cars)
