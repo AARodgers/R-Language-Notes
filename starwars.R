@@ -215,3 +215,37 @@ msleep %>%
   # filter the order column by Rodentia and Primates
   filter(order, %in% c("Rodentia", "Primates")) %>%
   table()
+
+#Visualise data
+############################
+
+plot(pressure)
+
+# The grammar of graphics
+ # data
+ # mapping
+ #geometry
+
+ # Bar plots
+ # ggplot is the function but ggplot2 is the library
+ # is in tidyverse
+ # code creates a bar chart of the count of each gender
+ ggplot(data = starwars,
+ #aes means estetics like mapping on an x and y access
+   mapping = aes(x = gender)) + geom_bar()
+
+#Histograms
+# consists of a series of adjacent rectangular bars, where
+#the width of each bar represents the range of values, and the
+# height represents the frequency or count of observations
+#falling within that range
+starwars %>%
+  drop_na(height) %>%
+  ggplot(mapping = aes(x = height)) +
+  geom_histogram()
+
+# this is the same as above
+starwars %>%
+  drop_na(height) %>%
+  ggplot(aes(height)) +
+  geom_histogram()
