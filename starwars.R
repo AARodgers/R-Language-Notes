@@ -208,7 +208,7 @@ msleep %>%
 # Create tables
 # will count the number of observation types in a column
 table(msleep$vore)
-# to see how many of the vores are Rodents and h.m. Primates
+()# to see how many of the vores are Rodents and h.m. Primates
 msleep %>%
   # select the vore and order columns
   select(vore, order) %>%
@@ -249,3 +249,50 @@ starwars %>%
   drop_na(height) %>%
   ggplot(aes(height)) +
   geom_histogram()
+
+# Box plots
+# graphical representation of the distribution of numerical
+#data through five key summary statistics. These statistics
+#are the minimum, first quartile (Q1), median (or second
+#quartile, Q2), third quartile (Q3), and maximum.
+starwars %>%
+ drop_na(height) %>%
+ ggplot(mapping = aes(x = height)) +
+ geom_boxplot(fill = "steelblue") +
+ theme_bw() +
+ labs(title = "Boxplot of height",
+      x = "Heght of character")
+
+# Density Plots
+# the probability of an observation at any particular value
+starwars %>%
+  drop_na(height) %>%
+  filter(sex %in% c("male", "female")) %>%
+  ggplot(mapping = aes(x = height,
+                    color =sex,
+                    fill = sex)) +
+  # alpha is how dark the coloring is
+  geom_density(alpha = .02)+
+  theme_bw
+
+# Scatter plots
+starwars %>%
+  filter(mass < 200) %>%
+  # x axis is height, y is mass, colored by sex
+  ggplot(aes(height, mass, color = sex)) +
+  # geom_point is the scatter plot
+  geom_point(size = 5, alpha = 0.5)+
+  theme_minimal()
+  labs(title = "Height and mass by sex")
+
+# Smoothed model
+starwars %>%
+  filter(mass < 200) %>%
+  ggplot(aes(height, mass, color = sex)) +
+  geom_point(size = 3, alpha = 0.8)+
+  # adds a smooth linear model to plot
+  geom_smooth()+
+  # creates a different box for each of the sexes
+  facet_wrap(~sex) +
+  theme_bw()
+  labs(title = "Height and mass by sex")
