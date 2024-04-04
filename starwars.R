@@ -332,4 +332,37 @@ gapminder %>%
   TukeyHSD() %>%
   plot()
 
-#
+# Chi Squared, categorical data
+chi_plot
+
+head(iris)
+flowers <- iris %>%
+  mutate(size = cut(Sepal.Length,
+              breaks = 3,
+              labels = c("Small", "Medium", "Large"))) %>%
+  select(Species, size)
+View(flowers)
+
+#Chi Squared goodness of fit test
+# the null hypothesis is that there are equal proportions of
+# small, medium, large sepal length, the alternative is that
+# they are not equal,
+flowers %>%
+  select(Size) %>%
+  table() %>%
+  # how likely is it that we would see the differences we
+  #are seeing
+  chisq.test()
+  # returns
+  #X-squared = 28.44, df = 2, p-value = 6.673e-07
+  # p value is small (way less than .05) so we reject the
+  # null hypothesis and the data is statistically relevant
+
+# Are we seeing the number of each species be the same for
+#small, medium and large?
+# it will show that one variable is dependent on another,
+# this species is ususally small etc
+# Chi squared test of independence
+flowers %>%
+  table() #%>%
+  chisq.test()
