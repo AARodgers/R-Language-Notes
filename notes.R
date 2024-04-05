@@ -34,3 +34,7 @@ The core principles of tidy data are:
     organized into separate tables (data frames in R) for each type of observational unit. For example, if a dataset contains information about both individuals and their corresponding measurements, there would be one table for individuals and another for measurements, with a common key linking the two tables.
 
     Each Value Should Be in One Cell: Tidy data ensures that each cell in the dataset contains a single value. This makes it easier to perform computations, filtering, and other operations on the data.
+
+Notes from 4.4.24:
+TO DO: get Github
+
