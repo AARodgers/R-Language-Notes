@@ -71,4 +71,39 @@ data()
 #to view the CO2 dataset
 view(CO2)
 
+# to make a table or dataframe for a budget
+# Create a data frame representing the household budget
+budget <- data.frame(
+  Category = c("Housing", "Utilities", "Groceries", "Transportation", "Entertainment"),
+  Budgeted_Amount = c(1500, 200, 400, 300, 100),
+  Actual_Spending = c(1450, 220, 380, 280, 90)
+)
+
+# Calculate variance
+budget$Variance <- budget$Actual_Spending - budget$Budgeted_Amount
+
+# Print the budget data
+print(budget)
+
+# Calculate total budgeted amount and total actual spending
+total_budgeted <- sum(budget$Budgeted_Amount)
+total_spending <- sum(budget$Actual_Spending)
+
+# Print total budgeted amount and total actual spending
+cat("Total Budgeted Amount: $", total_budgeted, "\n")
+cat("Total Actual Spending: $", total_spending, "\n")
+
+# Calculate total variance
+total_variance <- total_spending - total_budgeted
+
+# Print total variance
+cat("Total Variance: $", total_variance, "\n")
+
+# Create a bar plot to visualize budgeted amount vs. actual spending
+library(ggplot2)
+ggplot(budget, aes(x = Category, y = c(Budgeted_Amount, Actual_Spending), fill = factor(Category))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Household Budget", y = "Amount ($)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
