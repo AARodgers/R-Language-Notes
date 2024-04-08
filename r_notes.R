@@ -9,15 +9,16 @@ con <- dbConnect(odbc::obdc(),
         server = "myserver",
         database = "mydatabase",
         uid = "myusername",
-        pwd = "mypassword")
+        pwd = "mypassword"
+)
 
-#execute a sql query and store the result in a data frame
-data <- dbGetQuery( con, "SELECT * FROM mytable")
+# execute a sql query and store the result in a data frame
+data <- dbGetQuery(con, "SELECT * FROM mytable")
 
-#close the database connection
+# close the database connection
 dbDisconnect(con)
 
-#END ========================
+# END ========================
 
 # START
 # Reading and writing to a CSV file
@@ -25,58 +26,60 @@ data <- read.csv("file.csv")
 write.csv(data, "file.csv")
 # END ======================
 
-#START
+# START
 # Reading and writing an Excel File
 install.packages("readx1")
 library(readx1)
 data <- read_excel("file.xlsx")
-write.xlsx(data, "file.xlsx", sheetName = "Sheet1", colNames = TRUE,
-           rowNames = FALSE)
+write.xlsx(data, "file.xlsx",
+        sheetName = "Sheet1", colNames = TRUE,
+        rowNames = FALSE
+)
 # END
 
-#START
+# START
 # vector is like a list of things all with same data type
 nums <- c(1, 2, 3, 4)
 chars <- c("red", "green", "blue")
-#END
+# END
 
-#START
+# START
 # matrices = a two dimensional array of values of the same data type
-#create a 3.3 matrix
-mat <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol =3)
-#END
+# create a 3.3 matrix
+mat <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol = 3)
+# END
 
-#START: make small data frame and view the table and schema
+# START: make small data frame and view the table and schema
 ages <- c(5, 6)
 names <- c("John", "James")
 friends <- data.frame(names, ages)
 View(friends)
 str(friends)
-#END
+# END
 
-#to checkout a variable
+# to checkout a variable
 data.set$variable
 friends$names
 
 # to get the value of the first row and first column
-#data.set[row, column]
-friends[1,1]
+# data.set[row, column]
+friends[1, 1]
 # will give you all of the columns for row 1 ( a full record)
 friends[1, ]
-#will list whole first column or all rows in column one
-friends[ ,1]
+# will list whole first column or all rows in column one
+friends[, 1]
 
-#to view built in datasets in r studio
+# to view built in datasets in r studio
 data()
-#to view the CO2 dataset
+# to view the CO2 dataset
 view(CO2)
 
 # to make a table or dataframe for a budget
 # Create a data frame representing the household budget
 budget <- data.frame(
-  Category = c("Housing", "Utilities", "Groceries", "Transportation", "Entertainment"),
-  Budgeted_Amount = c(1500, 200, 400, 300, 100),
-  Actual_Spending = c(1450, 220, 380, 280, 90)
+        Category = c("Housing", "Utilities", "Groceries", "Transportation", "Entertainment"),
+        Budgeted_Amount = c(1500, 200, 400, 300, 100),
+        Actual_Spending = c(1450, 220, 380, 280, 90)
 )
 
 # Calculate variance
@@ -102,8 +105,33 @@ cat("Total Variance: $", total_variance, "\n")
 # Create a bar plot to visualize budgeted amount vs. actual spending
 library(ggplot2)
 ggplot(budget, aes(x = Category, y = c(Budgeted_Amount, Actual_Spending), fill = factor(Category))) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Household Budget", y = "Amount ($)") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Household Budget", y = "Amount ($)") +
+        theme_minimal() +
+        theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+# To remove empty or NA rows ##################
+
+# na.omit() function removes rows with any missing values (NA) from a data frame.
+# Remove empty rows with NA values
+cleaned_data <- na.omit(your_data_frame)
+# complete.cases() function returns a logical vector indicating which rows
+# have no missing values (NA) across all columns.
+# Remove empty rows with complete.cases()
+cleaned_data <- your_data_frame[complete.cases(your_data_frame), ]
+
+# To check your column or variable names #########################
+
+# names() function can be used to get or set the names of the data
+# frame's variables.
+# If you want to retrieve the variable names, simply pass your data
+# frame to names().
+# Using names() to get variable names
+variable_names <- names(your_data_frame)
+print(variable_names)
+
+# colnames() function is specifically for retrieving or setting column names in a matrix or data frame.
+# It's similar to names() but is typically used with data frames or matrices.
+# Using colnames() to get column names
+variable_names <- colnames(your_data_frame)
+print(variable_names)
