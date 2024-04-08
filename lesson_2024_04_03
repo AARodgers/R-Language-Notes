@@ -1,0 +1,180 @@
+#Lesson 4.3.24
+library("dplyr")
+library("tidyverse")
+
+# Creating variables
+# Creating variables
+age <- 30
+name <- "John"
+height <- 175.5
+
+# doesn't equal
+x <- 5
+y <- 5
+if ( x != y) print("hi")
+if ( x == y) print("bye")
+
+# Creating numeric and character vectors
+numeric_vector <- c(1, 2, 3, 4, 5)
+character_vector <- c("apple", "banana", "cherry")
+
+# Creating a matrix
+# they store numbers
+# if it is not symetrical then you create a dataframe instead
+my_matrix <- matrix(1:12, nrow = 3, ncol = 4)
+# or syntax, you don't have to put nrow or ncol, it already knows
+
+# Creating a 3D array
+# list within list, like addresses
+# how do you find a position
+# to find what is in row 1, column 1, and matrix 1, my_array[1,1,1] =
+# my_array[row, column, matrix]
+my_array <- array(1:24, dim = c(2, 3, 4))
+my_array2 <- array(1:27, dim = c(3, 3, 3))
+View(my_array2)
+
+#Creating a list
+# Can have different data types in it
+my_list <- list(name = "John", age = 30, scores = c(85, 92, 78))
+# can do my_list[1] and it will return "John"
+my_list[[1]]
+# returns John
+my_list$scores
+my_list[3]
+my_list[[3]][1]
+# will return the value from the 3rd element in my_list and the first in scores
+my_list$scores[2]
+my_list[[3]][1]
+my_list[[3]][2]
+my_list[[3]][3]
+
+# Creating a data frame
+# will be symmetrical, but a list doesn't have to be
+student_data <- data.frame(
+  name = c("Alice", "Bob", "Carol"),
+  age = c(25, 22, 24),
+  score = c(95, 88, 91)
+)
+View(student_data)
+# could convert the name column to row names so that you have a matrix to do
+#other stuff with
+colnames(student_data)
+rownames(student_data)
+dim(student_data)
+# return 3 3 otherwise a 3 by 3 matrix
+nrow(student_data)
+ncol(student_data)
+student_data$name
+# to see first 6 rows
+head(student_data)
+
+# Create a numeric vector named 'ages'
+ages <- c(25, 30, 35, 28, 32)
+
+# Create a character vector named 'fruits'
+fruits <- c("apple", "banana", "orange")
+
+# Calculate mean and median of 'ages'
+mean_age <- mean(ages)
+median_age <- median(ages)
+
+# Combine 'ages' and 'fruits' into 'mixed_data'
+mixed_data <- c(ages, fruits)
+
+# Create a 3x3 matrix 'my_matrix' with random numbers
+set.seed(123)
+my_matrix <- matrix(data = runif(9), nrow = 3, ncol = 3)
+
+# Sum of rows and columns
+row_sums <- rowSums(my_matrix)
+# to get the sum of the first row
+row_sums_1 <- rowSums(my_matrix)[1]
+col_sums <- colSums(my_matrix)
+
+# Transpose 'my_matrix'
+# rows become columns and columns become rows
+#first column becomes first row
+transposed_matrix <- t(my_matrix)
+
+# Create a 3D array 'my_array' with dimensions 2x2x3
+my_array <- array(data = runif(12), dim = c(2, 2, 3))
+
+# Calculate the mean along dimensions
+# margins means levels or matrices
+mean_along_rows <- apply(my_array, MARGIN = c(1), FUN = mean)
+mean_along_cols <- apply(my_array, MARGIN = c(2), FUN = mean)
+# c(1) is first matrix, c(2) is second matrice
+mean_along_layers <- apply(my_array, MARGIN = c(3), FUN = mean)
+
+# install package
+install.packages("dplyr")
+
+# load package
+library("dplyr")
+
+# will list all the functions in dplyr
+#dplyr::
+
+#control the namespace warning
+dplyr::filter()
+stats::filter()
+
+# first script, simple calculations
+a <- 10
+b <- 5
+sum_result <- a + b
+difference_result <- a - b
+product_result <- a * b
+quotient_result <- a / b
+
+## Exercise 2: Variables and Strings
+name <- "John"
+age <- 30
+greeting <- paste("Hello, my name is", name, "and I am", age, "years old.")
+# you need to put greeting in console and press enter to interpolate
+
+# paste0 will not add space after
+greeting2 <- paste0("Hello, my name is", name, "and I am", age, "years old.")
+# it will over write the greeting variable
+
+greeting <- paste("Hello, my name is", name, "and I am", age, "years old.")
+
+
+# Exercise 3: Vectors and Vector Operations
+# numbers is a list and/or array
+numbers <- c(2, 4, 6, 8, 10)
+#what is the value of the third position
+numbers[3]
+# how many elements
+length(numbers)
+#str
+str(numbers)
+# num [1:5] 2 4 6 8 10 ( has 5 numbers)
+
+# to square all of the numbers
+squared_numbers <- numbers^2
+
+# to get the mean
+mean_value <- mean(numbers)
+
+# Exercise 4: Conditional Statements
+temperature <- 50
+
+if (temperature > 30) {
+  weather <- "hot"
+  print(weather)
+} else if (temperature > 20) {
+  weather <- "warm"
+  print(weather)
+} else {
+  weather <- "cool"
+  print(weather)
+}
+
+# create a function, you don't need return in R
+my_function <- function(a_name) {
+  a_name <- 'local variable'
+  return (a_name)
+}
+
+my_function('hello')
