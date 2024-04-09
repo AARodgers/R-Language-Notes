@@ -135,3 +135,65 @@ print(variable_names)
 # Using colnames() to get column names
 variable_names <- colnames(your_data_frame)
 print(variable_names)
+
+# remove columns that start with X
+remove_columns_starting_with_X <- function(data) {
+  # Get the names of all columns
+  column_names <- names(data)
+
+  # Identify columns that start with "X"
+  columns_to_remove <- grep("^X", column_names)
+
+  # Remove identified columns
+  cleaned_data <- data[, -columns_to_remove]
+
+  return(cleaned_data)
+}
+# Example data frame
+df <- data.frame(X1 = 1:3, X2 = 4:6, Y1 = 7:9)
+
+# Remove columns starting with "X"
+cleaned_df <- remove_columns_starting_with_X(df)
+
+# View cleaned data frame
+print(cleaned_df)
+
+# Remove columns that start with X with if statement
+# Example data frame
+df <- data.frame(X1 = 1:3, X2 = 4:6, Y1 = 7:9)
+
+# Function to remove columns starting with "X"
+remove_columns_starting_with_X <- function(data) {
+  # Get column names
+  column_names <- names(data)
+
+  # Check if any column starts with "X"
+  if (any(grepl("^X", column_names))) {
+    # If true, remove columns starting with "X"
+    cleaned_data <- data[, !grepl("^X", column_names)]
+    return(cleaned_data)
+  } else {
+    # If false, return original data frame
+    return(data)
+  }
+}
+
+# Apply the function
+cleaned_df <- remove_columns_starting_with_X(df)
+
+# View cleaned data frame
+print(cleaned_df)
+
+# ###############################
+#Group data by category and summarize information
+
+# Group expenses by category
+grouped_expenses <- category_expenses %>%
+  group_by(category)
+
+# Summarize expenses within each category
+summarized_expenses <- grouped_expenses %>%
+  summarize(Total_Amount = sum(Amount))
+
+# View the summarized data
+print(summarized_expenses)
