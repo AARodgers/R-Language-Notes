@@ -7,6 +7,12 @@ library(ggplot2)
 data(iris)
 ggplot(data =iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_point()
 
+# Violin plot: shows distribution of an observation of a variable
+ggplot(iris, aes(x = Species, y = Petal.Length)) +
+  geom_violin()
+ +
+ labs(x = "", y = "Petal Length") + theme_bw()
+ 
 # BAR CHART
 # See the distribution of a categorical variable
 # good for comparing values
