@@ -197,3 +197,14 @@ summarized_expenses <- grouped_expenses %>%
 
 # View the summarized data
 print(summarized_expenses)
+
+# How to change a column to currency format
+# Example data
+amount <- 1234.567
+
+# Convert to currency format
+formatted_amount <- format(amount, big.mark = ",", decimal.mark = ".", digits = 2, nsmall = 2, scientific = FALSE, trim = TRUE)
+
+# Print the formatted amount
+print(formatted_amount)
+
