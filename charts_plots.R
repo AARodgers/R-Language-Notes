@@ -24,3 +24,29 @@ ggplot(economics, aes(x=date, y=unemploy)) +
   geom_line() +
   labs(x="Date", y="Number of unemployed") +
   ggtitle("Unemployment over Time")
+
+
+# HISTOGRAM
+# allows you to see the distribution of a continuous variable (highway miles per gallon)
+library(ggplot)
+data(mpg)
+
+ggplot(mpg, aes(x=hwy)) +
+  geom_histogram(bins=20, fill="blue", color="white") +
+  labs(x="Highway MPG", y="Frequency") +
+  ggtitle("Histogram of the Highway MPG")
+
+
+# PIE CHART
+# allows you to see the porportion of a categorical variable (carburetor count)
+# NEEDS TO BE FIXED
+library(ggplot2)
+data(mtcars)
+
+carb_count <- table(mtcars$carb)
+
+ggplot(mtcars, aes(x="")) +
+  geom_bar(aes(y=carb_count, fill=factor(carb_count))) +
+  labs(x="", y="Count") +
+  ggtitle("Pie Chart of Car Carburetor Count") +
+  coord_polar("y", start=0)
