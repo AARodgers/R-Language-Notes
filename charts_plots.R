@@ -56,3 +56,38 @@ ggplot(mtcars, aes(x="")) +
 
 
 # Plotting Notes:
+#logarithmic scale can be useful for displaying large ranges
+#of data, it can also distort the relationship between variables.
+
+# Keep it simple
+# Show data accurately
+# Choose the right type of chart or visualization
+# Use appropriate scales
+# Use appropriate colors
+# Always labe axes and provide context
+# Use annotations and callouts to hightlight important info and draw viewer's attention
+# to specific areas
+
+# stick with consistent color schemes
+scale_fill_brewer(palette = "GnBu")
+
+# Adding annotations example
+ library (ggplot)
+
+ data <- data.frame(x = c(1:10), y = c(1:10))
+
+ #Basic plot
+ p <- ggplot(data, aes(x, y)) + geom_point()
+
+# Add annotations and callouts
+p +
+  annotate(geom = "text", x = 5, y = 5 ,label = "Important Information", size = 6, vjust = -1) +
+  annotate(geom_segment", x= 5, xend = 5, y =1, yend =4, color = "red", size = 1.5,
+  arrow = arrow(length = unit(0.3, "cm")))
+
+# other kinds of annotations and callouts
+p +
+  annotate(geom = "text", x =5, y = 5, label = "Important Information",
+           size = 6, vjust = -1) +
+  annotate(geom_segment, x = 5, xend = 10, y = 5, yend = 10,
+  color = "red", size = 1.5, arrow = arrow(length = unit(0.3, "cm")))
