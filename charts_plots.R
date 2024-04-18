@@ -1,6 +1,7 @@
 # SCATTER PLOT: put in R Studio to see scatter plot of iris data set
 # Good to see the relationship between pairs of variables in a data set
 # has one category and 4 continuous variables
+# Good for showing correlations between variables
 install.packages("ggplot2")
 library(ggplot2)
 data(iris)
@@ -8,6 +9,7 @@ ggplot(data =iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species)) + geom_poi
 
 # BAR CHART
 # See the distribution of a categorical variable
+# good for comparing values
 library(ggplot2)
 data(diamond)
 ggplot(diamonds, aes(x=cut)) +
@@ -17,6 +19,7 @@ ggplot(diamonds, aes(x=cut)) +
 
 # LINE CHART
 # see the trend of a continuous variable( # of unemployed) over time
+# good for showing trends over time
 library(ggplot2)
 data(economics)
 
@@ -50,3 +53,6 @@ ggplot(mtcars, aes(x="")) +
   labs(x="", y="Count") +
   ggtitle("Pie Chart of Car Carburetor Count") +
   coord_polar("y", start=0)
+
+
+# Plotting Notes:
